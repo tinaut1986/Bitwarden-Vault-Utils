@@ -26,11 +26,11 @@ static void TestBitwardenCLI()
         //login with email
         bitwarden = new BitwardenCLI(url, email, password);
 
-        //login with email and OTP 2FA
-        bitwarden = new BitwardenCLI(url, email, password, otp2FA); 
+        ////login with email and OTP 2FA
+        //bitwarden = new BitwardenCLI(url, email, password, otp2FA);
 
-    //login with client_id and client_secret
-        bitwarden = new BitwardenCLI(url, client_id, client_secret, password);
+        ////login with client_id and client_secret
+        //bitwarden = new BitwardenCLI(url, client_id, client_secret, password);
 
         Console.WriteLine("Success!");
     }

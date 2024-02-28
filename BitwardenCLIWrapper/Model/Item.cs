@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,52 @@ namespace BitwardenVaultCLI_API.Model
         public List<Attachment> attachments { get; set; }
         public DateTime revisionDate { get; set; }
         public object deletedDate { get; set; }
+
+        public string loginUsername => login?.username ?? "";
+        public string lowerLoginUsername => loginUsername.ToLower();
+        public string loginPassword => login?.password ?? "";
+
+        public void CopyURLs(Item sourceItem)
+        {
+            if (login.uris == sourceItem.login.uris)
+                return;
+
+            if (sourceItem.login.uris != null)
+            {
+                if (login.uris == null)
+                    login.uris = new List<BitwardenVaultCLI_API.Model.Uri>();
+
+                login.uris.AddRange(sourceItem.login.uris);
+            }
+        }
+
+        public void CopyNotes(Item sourceItem)
+        {
+            if (notes == sourceItem.notes)
+                return;
+
+            if (sourceItem.notes != null)
+            {
+                if (notes == null)
+                    notes = sourceItem.notes;
+                else
+                    notes += Environment.NewLine + sourceItem.notes;
+            }
+        }
+
+        public void CopyAttachment(Item sourceItem)
+        {
+            if (attachments == sourceItem.attachments)
+                return;
+
+            if (sourceItem.attachments != null)
+            {
+                if (attachments == null)
+                    attachments = new List<Attachment>();
+
+                attachments.AddRange(sourceItem.attachments);
+            }
+        }
     }
 
     [DebuggerDisplay("Uri = {uri}")]
