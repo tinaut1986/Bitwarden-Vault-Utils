@@ -28,29 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             gridResults = new DataGridView();
-            colName = new DataGridViewTextBoxColumn();
-            colUserName = new DataGridViewTextBoxColumn();
-            colPassword = new DataGridViewTextBoxColumn();
             txtFilter = new TextBox();
             btnSearch = new Button();
-            menuStrip1 = new MenuStrip();
+            menuStrip = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
-            mergeToolStripMenuItem = new ToolStripMenuItem();
+            refreshToolStripMenuItem = new ToolStripMenuItem();
+            itemsToolStripMenuItem = new ToolStripMenuItem();
+            mergeToolStripMenuItem1 = new ToolStripMenuItem();
+            cleanURLsToolStripMenuItem = new ToolStripMenuItem();
             gbResults = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            gbURLs = new GroupBox();
-            gridURLs = new DataGridView();
-            refreshToolStripMenuItem = new ToolStripMenuItem();
+            gbURIs = new GroupBox();
+            gridURIs = new DataGridView();
+            ctxMenuStrip = new ContextMenuStrip(components);
+            colName = new DataGridViewTextBoxColumn();
+            colUserName = new DataGridViewTextBoxColumn();
+            colPassword = new DataGridViewTextBoxColumn();
+            URI = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)gridResults).BeginInit();
-            menuStrip1.SuspendLayout();
+            menuStrip.SuspendLayout();
             gbResults.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
-            gbURLs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridURLs).BeginInit();
+            gbURIs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridURIs).BeginInit();
             SuspendLayout();
             // 
             // gridResults
@@ -60,8 +66,8 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
             dataGridViewCellStyle1.ForeColor = Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
             gridResults.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            gridResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             gridResults.BackgroundColor = Color.White;
             gridResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridResults.Columns.AddRange(new DataGridViewColumn[] { colName, colUserName, colPassword });
@@ -73,27 +79,6 @@
             gridResults.Size = new Size(563, 361);
             gridResults.TabIndex = 0;
             gridResults.SelectionChanged += gridResults_SelectionChanged;
-            // 
-            // colName
-            // 
-            colName.DataPropertyName = "name";
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            // 
-            // colUserName
-            // 
-            colUserName.DataPropertyName = "loginUsername";
-            colUserName.HeaderText = "UserName";
-            colUserName.Name = "colUserName";
-            colUserName.ReadOnly = true;
-            // 
-            // colPassword
-            // 
-            colPassword.DataPropertyName = "loginPassword";
-            colPassword.HeaderText = "Passwrod";
-            colPassword.Name = "colPassword";
-            colPassword.ReadOnly = true;
             // 
             // txtFilter
             // 
@@ -114,28 +99,49 @@
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1151, 24);
-            menuStrip1.TabIndex = 3;
-            menuStrip1.Text = "menuStrip1";
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, itemsToolStripMenuItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(1151, 24);
+            menuStrip.TabIndex = 3;
+            menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mergeToolStripMenuItem, refreshToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { refreshToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(37, 20);
             fileToolStripMenuItem.Text = "File";
             // 
-            // mergeToolStripMenuItem
+            // refreshToolStripMenuItem
             // 
-            mergeToolStripMenuItem.Name = "mergeToolStripMenuItem";
-            mergeToolStripMenuItem.Size = new Size(180, 22);
-            mergeToolStripMenuItem.Text = "Merge";
-            mergeToolStripMenuItem.Click += mergeToolStripMenuItem_Click;
+            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            refreshToolStripMenuItem.Size = new Size(113, 22);
+            refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
+            // 
+            // itemsToolStripMenuItem
+            // 
+            itemsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mergeToolStripMenuItem1, cleanURLsToolStripMenuItem });
+            itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
+            itemsToolStripMenuItem.Size = new Size(48, 20);
+            itemsToolStripMenuItem.Text = "Items";
+            // 
+            // mergeToolStripMenuItem1
+            // 
+            mergeToolStripMenuItem1.Name = "mergeToolStripMenuItem1";
+            mergeToolStripMenuItem1.Size = new Size(127, 22);
+            mergeToolStripMenuItem1.Text = "Merge";
+            mergeToolStripMenuItem1.Click += mergeToolStripMenuItem_Click;
+            // 
+            // cleanURLsToolStripMenuItem
+            // 
+            cleanURLsToolStripMenuItem.Name = "cleanURLsToolStripMenuItem";
+            cleanURLsToolStripMenuItem.Size = new Size(127, 22);
+            cleanURLsToolStripMenuItem.Text = "CleanURIs";
+            cleanURLsToolStripMenuItem.Click += cleanURIsToolStripMenuItem_Click;
             // 
             // gbResults
             // 
@@ -167,7 +173,7 @@
             // 
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(gbURLs, 0, 1);
+            tableLayoutPanel2.Controls.Add(gbURIs, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(578, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -177,32 +183,70 @@
             tableLayoutPanel2.Size = new Size(570, 383);
             tableLayoutPanel2.TabIndex = 5;
             // 
-            // gbURLs
+            // gbURIs
             // 
-            gbURLs.Controls.Add(gridURLs);
-            gbURLs.Dock = DockStyle.Fill;
-            gbURLs.Location = new Point(3, 128);
-            gbURLs.Name = "gbURLs";
-            gbURLs.Size = new Size(564, 252);
-            gbURLs.TabIndex = 5;
-            gbURLs.TabStop = false;
-            gbURLs.Text = "URLs";
+            gbURIs.Controls.Add(gridURIs);
+            gbURIs.Dock = DockStyle.Fill;
+            gbURIs.Location = new Point(3, 128);
+            gbURIs.Name = "gbURIs";
+            gbURIs.Size = new Size(564, 252);
+            gbURIs.TabIndex = 5;
+            gbURIs.TabStop = false;
+            gbURIs.Text = "URIs";
             // 
-            // gridURLs
+            // gridURIs
             // 
-            gridURLs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridURLs.Dock = DockStyle.Fill;
-            gridURLs.Location = new Point(3, 19);
-            gridURLs.Name = "gridURLs";
-            gridURLs.Size = new Size(558, 230);
-            gridURLs.TabIndex = 0;
+            gridURIs.AllowUserToAddRows = false;
+            gridURIs.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.HotTrack;
+            gridURIs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            gridURIs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            gridURIs.BackgroundColor = Color.White;
+            gridURIs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridURIs.Columns.AddRange(new DataGridViewColumn[] { URI });
+            gridURIs.Dock = DockStyle.Fill;
+            gridURIs.Location = new Point(3, 19);
+            gridURIs.Name = "gridURIs";
+            gridURIs.Size = new Size(558, 230);
+            gridURIs.TabIndex = 0;
             // 
-            // refreshToolStripMenuItem
+            // ctxMenuStrip
             // 
-            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            refreshToolStripMenuItem.Size = new Size(180, 22);
-            refreshToolStripMenuItem.Text = "Refresh";
-            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
+            ctxMenuStrip.Name = "ctxMenuStrip";
+            ctxMenuStrip.Size = new Size(61, 4);
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "name";
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 64;
+            // 
+            // colUserName
+            // 
+            colUserName.DataPropertyName = "loginUsername";
+            colUserName.HeaderText = "UserName";
+            colUserName.Name = "colUserName";
+            colUserName.ReadOnly = true;
+            colUserName.Width = 87;
+            // 
+            // colPassword
+            // 
+            colPassword.DataPropertyName = "loginPassword";
+            colPassword.HeaderText = "Password";
+            colPassword.Name = "colPassword";
+            colPassword.ReadOnly = true;
+            colPassword.Width = 82;
+            // 
+            // URI
+            // 
+            URI.DataPropertyName = "uri";
+            URI.HeaderText = "URI";
+            URI.Name = "URI";
+            URI.Width = 50;
             // 
             // Form1
             // 
@@ -212,20 +256,20 @@
             Controls.Add(tableLayoutPanel1);
             Controls.Add(btnSearch);
             Controls.Add(txtFilter);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(menuStrip);
+            MainMenuStrip = menuStrip;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             Shown += Form1_Shown;
             ((System.ComponentModel.ISupportInitialize)gridResults).EndInit();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             gbResults.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
-            gbURLs.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gridURLs).EndInit();
+            gbURIs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridURIs).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -235,17 +279,21 @@
         private DataGridView gridResults;
         private TextBox txtFilter;
         private Button btnSearch;
-        private MenuStrip menuStrip1;
+        private MenuStrip menuStrip;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem mergeToolStripMenuItem;
         private GroupBox gbResults;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private GroupBox gbURIs;
+        private DataGridView gridURIs;
+        private ToolStripMenuItem refreshToolStripMenuItem;
+        private ContextMenuStrip ctxMenuStrip;
+        private ToolStripMenuItem itemsToolStripMenuItem;
+        private ToolStripMenuItem mergeToolStripMenuItem1;
+        private ToolStripMenuItem cleanURLsToolStripMenuItem;
         private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn colUserName;
         private DataGridViewTextBoxColumn colPassword;
-        private TableLayoutPanel tableLayoutPanel1;
-        private TableLayoutPanel tableLayoutPanel2;
-        private GroupBox gbURLs;
-        private DataGridView gridURLs;
-        private ToolStripMenuItem refreshToolStripMenuItem;
+        private DataGridViewTextBoxColumn URI;
     }
 }
