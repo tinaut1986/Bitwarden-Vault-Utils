@@ -107,15 +107,18 @@ namespace BitWarden_Utils
 
         private bool DeleteURI(BitwardenVaultCLI_API.Model.Uri uriToDelete, BitwardenVaultCLI_API.Model.Uri uriToCheck)
         {
-            List<string> ListToDelete = uriToDelete.uri.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
-            List<string> ListToCheck = uriToCheck.uri.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> listToDelete = uriToDelete.uri.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> listToCheck = uriToCheck.uri.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
 
-            if (ListToDelete.Count < ListToCheck.Count)
+            // After the last /, at urls can be ? to pass parameters. All that is not part of the url, so must not be considered.
+            listToDelete[listToDelete.Count - 1] = listToDelete.Last().Split('?', StringSplitOptions.RemoveEmptyEntries).First();
+
+            if (listToDelete.Count < listToCheck.Count)
                 return false;
 
-            for (int i = 0; i < ListToCheck.Count; i++)
+            for (int i = 0; i < listToCheck.Count; i++)
             {
-                if (ListToCheck[i] != ListToDelete[i])
+                if (listToCheck[i] != listToDelete[i])
                     return false;
             }
 
@@ -283,7 +286,10 @@ namespace BitWarden_Utils
             Item item = (Item)gridResults.CurrentRow.DataBoundItem;
 
             if (CleanURLs(item?.login))
+            {
                 bitwarden?.EditItem(item);
+                gridURIs.DataSource = item.login.uris.ToList();
+            }
         }
     }
 }

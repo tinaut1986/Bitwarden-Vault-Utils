@@ -32,6 +32,9 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             gridResults = new DataGridView();
+            colName = new DataGridViewTextBoxColumn();
+            colUserName = new DataGridViewTextBoxColumn();
+            colPassword = new DataGridViewTextBoxColumn();
             txtFilter = new TextBox();
             btnSearch = new Button();
             menuStrip = new MenuStrip();
@@ -45,11 +48,8 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             gbURIs = new GroupBox();
             gridURIs = new DataGridView();
-            ctxMenuStrip = new ContextMenuStrip(components);
-            colName = new DataGridViewTextBoxColumn();
-            colUserName = new DataGridViewTextBoxColumn();
-            colPassword = new DataGridViewTextBoxColumn();
             URI = new DataGridViewTextBoxColumn();
+            ctxMenuStrip = new ContextMenuStrip(components);
             ((System.ComponentModel.ISupportInitialize)gridResults).BeginInit();
             menuStrip.SuspendLayout();
             gbResults.SuspendLayout();
@@ -79,6 +79,30 @@
             gridResults.Size = new Size(563, 361);
             gridResults.TabIndex = 0;
             gridResults.SelectionChanged += gridResults_SelectionChanged;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "name";
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 64;
+            // 
+            // colUserName
+            // 
+            colUserName.DataPropertyName = "loginUsername";
+            colUserName.HeaderText = "UserName";
+            colUserName.Name = "colUserName";
+            colUserName.ReadOnly = true;
+            colUserName.Width = 87;
+            // 
+            // colPassword
+            // 
+            colPassword.DataPropertyName = "loginPassword";
+            colPassword.HeaderText = "Password";
+            colPassword.Name = "colPassword";
+            colPassword.ReadOnly = true;
+            colPassword.Width = 82;
             // 
             // txtFilter
             // 
@@ -209,44 +233,22 @@
             gridURIs.Dock = DockStyle.Fill;
             gridURIs.Location = new Point(3, 19);
             gridURIs.Name = "gridURIs";
+            gridURIs.ReadOnly = true;
             gridURIs.Size = new Size(558, 230);
             gridURIs.TabIndex = 0;
-            // 
-            // ctxMenuStrip
-            // 
-            ctxMenuStrip.Name = "ctxMenuStrip";
-            ctxMenuStrip.Size = new Size(61, 4);
-            // 
-            // colName
-            // 
-            colName.DataPropertyName = "name";
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            colName.Width = 64;
-            // 
-            // colUserName
-            // 
-            colUserName.DataPropertyName = "loginUsername";
-            colUserName.HeaderText = "UserName";
-            colUserName.Name = "colUserName";
-            colUserName.ReadOnly = true;
-            colUserName.Width = 87;
-            // 
-            // colPassword
-            // 
-            colPassword.DataPropertyName = "loginPassword";
-            colPassword.HeaderText = "Password";
-            colPassword.Name = "colPassword";
-            colPassword.ReadOnly = true;
-            colPassword.Width = 82;
             // 
             // URI
             // 
             URI.DataPropertyName = "uri";
             URI.HeaderText = "URI";
             URI.Name = "URI";
+            URI.ReadOnly = true;
             URI.Width = 50;
+            // 
+            // ctxMenuStrip
+            // 
+            ctxMenuStrip.Name = "ctxMenuStrip";
+            ctxMenuStrip.Size = new Size(61, 4);
             // 
             // Form1
             // 
